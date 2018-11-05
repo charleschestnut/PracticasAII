@@ -5,6 +5,18 @@ from urllib import request
 
 
 def main_window():
+    root = Tk()
+    
+    store_view = Button(root, text="Store", command=None)
+    store_view.pack(side=LEFT)
+    sorted_view = Button(root, text="List", command=None)
+    sorted_view.pack(side=LEFT)
+    search_brand_view = Button(root, text="Search by title", command=lambda: None)
+    search_brand_view.pack(side=LEFT)
+    find_discaunt_view = Button(root, text="Search by author", command=lambda: None)
+    find_discaunt_view.pack(side=LEFT)
+   
+    root.mainloop()
     return #TODO: Show the main window
 
 
