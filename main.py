@@ -8,13 +8,13 @@ def main_window():
     top = Tk()
     store_view = Button(top, text="Almacenar Productos", command=store_data)
     store_view.pack(side=LEFT)
-    list_view = Button(top, text="Ordenar por Precio Unitario", command=()) #TODO
+    list_view = Button(top, text="Ordenar por Precio Unitario", command=order_data())
     list_view.pack(side=LEFT)
-    list_view = Button(top, text="Mostrar Marca", command=()) #TODO
+    list_view = Button(top, text="Mostrar Marca", command=list_data())
     list_view.pack(side=LEFT)
-    list_view = Button(top, text="Buscar Rebajas", command=()) #TODO
+    list_view = Button(top, text="Buscar Rebajas", command=search_data())
     list_view.pack(side=LEFT)
-    exit_view = Button(top, text="Salir", command=lambda: exit()) #TODO
+    exit_view = Button(top, text="Salir", command=lambda: exit())
     exit_view.pack(side=LEFT)
     top.mainloop()
 
@@ -57,16 +57,20 @@ def retrieve_data(d: str):
 
 
 def retrieve_page(d: str):
-    return  # TODO: auxiliary method for retrieving the website as a websoup object
+    file = request.urlopen(d)
+    doc = BeautifulSoup(file, "lxml")
+    return doc
 
 
 def list_data():
     return  # TODO: Retrieve the data from the database and show them in the interface
 
-def search_data(search_type: str):
+
+def search_data():
     return  # TODO: Search the database applying some filter
 
-def order_data(order_type:str):
+
+def order_data():
     return  # TODO: Sort the data from the database using some criteria
 
 
