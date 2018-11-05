@@ -5,11 +5,51 @@ from urllib import request
 
 
 def main_window():
-    return #TODO: Show the main window
+    top = Tk()
+    store_view = Button(top, text="Almacenar Productos", command=store_data)
+    store_view.pack(side=LEFT)
+    list_view = Button(top, text="Ordenar por Precio Unitario", command=()) #TODO
+    list_view.pack(side=LEFT)
+    list_view = Button(top, text="Mostrar Marca", command=()) #TODO
+    list_view.pack(side=LEFT)
+    list_view = Button(top, text="Buscar Rebajas", command=()) #TODO
+    list_view.pack(side=LEFT)
+    exit_view = Button(top, text="Salir", command=lambda: exit()) #TODO
+    exit_view.pack(side=LEFT)
+    top.mainloop()
 
 
 def store_data():
-    return  # TODO: Store the data from retieve_data in the database
+    conn = connect('test.db')
+    conn.text_factory = str
+    conn.execute("DROP TABLE IF EXISTS PRODUCTOS")
+    conn.execute('''CREATE TABLE PRODUCTOS (
+            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            DENOMINACION TEXT NOT NULL,
+            MARCA TEXT NOT NULL,
+            PRECIO_KILO DOUBLE NOT NULL,
+            PRECIO_FINAL DOUBLE NOT NULL);''')
+    data = retrieve_data("https://www.ulabox.com/en/campaign/productos-sin-gluten#gref")
+    for i in data:
+        cursor = conn.execute(
+            """INSERT INTO PRODUCTOS (DENOMINACION, MARCA, PRECIO_KILO, PRECIO_FINAL) VALUES (?,?,?,?)""", i)
+        cursor.close()
+    conn.commit()
+    cursor = conn.execute("SELECT COUNT(*) FROM PRODUCTOS")
+    values = cursor.fetchone()
+    popup_count(values[0])
+    conn.close()
+
+
+def popup_count(count: int):
+    win = Toplevel()
+    win.wm_title("Resultado")
+
+    l = Label(win, text="Se han añadido " + str(count) + " entradas.")
+    l.grid(row=0, column=0)
+
+    b = Button(win, text="Ok", command=win.destroy)
+    b.grid(row=1, column=0)
 
 
 def retrieve_data(d: str):
