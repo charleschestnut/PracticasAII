@@ -10,7 +10,7 @@ def main_window():
     store_view.pack(side=LEFT)
     list_view = Button(top, text="Ordenar por Precio Unitario", command=lambda: order_data())
     list_view.pack(side=LEFT)
-    list_view = Button(top, text="Mostrar Marca", command=lambda: list_data())
+    list_view = Button(top, text="Mostrar Marca", command=mostrarMarca)
     list_view.pack(side=LEFT)
     list_view = Button(top, text="Buscar Rebajas", command=lambda: search_data())
     list_view.pack(side=LEFT)
@@ -92,6 +92,42 @@ def print_theme(cursor):
         lb.insert(END, '')
     lb.pack(side=LEFT, fill=BOTH)
     sc.config(command=lb.yview)
+    
+def mostrarMarca():
+    def list():
+        marcas=conn.execute('''SELECT DENOMINACION, PRECIO_FINAL FROM PRODUCTOS WHERE MARCA LIKE ?''', (w.get(),))
+        showResult(marcas)
+        
+    conn = connect('test.db')
+    brands = conn.execute('''SELECT MARCA FROM PRODUCTOS''')
+    
+    v = Toplevel()
+    label = Label(v, text="Search for brand:  ")
+    values=[]
+    for i in brands:
+        values.append(i)
+    w = Spinbox(v, values=(values))
+
+    button = Button(v, text="Search!", command=list)
+    label.grid(row=0, column=0)
+    w.grid(row=0, column =1 )
+    button.grid(row=1, column=1)
+
+def showResult(cursor):
+    #print(cursor[1])
+    v = Toplevel()
+    sc = Scrollbar(v)
+    sc.pack(side = RIGHT, fill=Y)
+    lb = Listbox(v, width=200, yscrollcommand=sc.set)
+    if(cursor != None):
+        for row in cursor:
+            lb.insert(END, "\n")
+            lb.insert(END, row[0])
+            lb.insert(END, row[1])
+        lb.pack(side=LEFT, fill=BOTH)
+        sc.config(command = lb.yview)
+    else:
+        messagebox.showinfo("Nothing", "There is no entry")
 
 
 if __name__ == "__main__": main_window()
