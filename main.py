@@ -96,10 +96,10 @@ def search_data():
     sc.pack(side = RIGHT, fill=Y)
     lb = Listbox(v, width=200, yscrollcommand=sc.set)
     for row in cursor:
-        lb.insert(END, "\n")
-        lb.insert(END, row[0])
-        lb.insert(END, "Old Price is " + str(row[1]))
-        lb.insert(END, "New Price is " + str(row[2]))    
+        lb.insert(END, "Nombre: " + str(row[0]))
+        lb.insert(END, "Precio antiguo" + str(row[1]))
+        lb.insert(END, "Precio nuevo" + str(row[2]))  
+         lb.insert(END, '')  
     lb.pack(side=LEFT, fill=BOTH)
     sc.config(command = lb.yview)
     return  # TODO: Search the database applying some filter
