@@ -8,11 +8,11 @@ def main_window():
     top = Tk()
     store_view = Button(top, text="Almacenar Productos", command=store_data)
     store_view.pack(side=LEFT)
-    list_view = Button(top, text="Ordenar por Precio Unitario", command=order_data())
+    list_view = Button(top, text="Ordenar por Precio Unitario", command=lambda: order_data())
     list_view.pack(side=LEFT)
-    list_view = Button(top, text="Mostrar Marca", command=list_data())
+    list_view = Button(top, text="Mostrar Marca", command=lambda: list_data())
     list_view.pack(side=LEFT)
-    list_view = Button(top, text="Buscar Rebajas", command=search_data())
+    list_view = Button(top, text="Buscar Rebajas", command=lambda: search_data())
     list_view.pack(side=LEFT)
     exit_view = Button(top, text="Salir", command=lambda: exit())
     exit_view.pack(side=LEFT)
@@ -29,7 +29,8 @@ def store_data():
             MARCA TEXT NOT NULL,
             PRECIO_KILO DOUBLE NOT NULL,
             PRECIO_FINAL DOUBLE NOT NULL);''')
-    data = retrieve_data("https://www.ulabox.com/en/campaign/productos-sin-gluten#gref")
+    data = [["test1", "test1", 1.0, 1.0], ["test2", "test2", 2.0, 2.0]]
+    # data = retrieve_data("https://www.ulabox.com/en/campaign/productos-sin-gluten#gref")
     for i in data:
         cursor = conn.execute(
             """INSERT INTO PRODUCTOS (DENOMINACION, MARCA, PRECIO_KILO, PRECIO_FINAL) VALUES (?,?,?,?)""", i)
@@ -71,7 +72,26 @@ def search_data():
 
 
 def order_data():
-    return  # TODO: Sort the data from the database using some criteria
+    conn = connect('test.db')
+    conn.text_factory = str
+    cursor = conn.execute("""SELECT * FROM PRODUCTOS ORDER BY PRECIO_KILO ASC""")
+    print_theme(cursor)
+    conn.close()
+
+
+def print_theme(cursor):
+    v = Toplevel()
+    sc = Scrollbar(v)
+    sc.pack(side=RIGHT, fill=Y)
+    lb = Listbox(v, width=150, yscrollcommand=sc.set)
+    for row in cursor:
+        lb.insert(END, row[0])
+        lb.insert(END, row[1])
+        lb.insert(END, row[2])
+        lb.insert(END, row[3])
+        lb.insert(END, '')
+    lb.pack(side=LEFT, fill=BOTH)
+    sc.config(command=lb.yview)
 
 
 if __name__ == "__main__": main_window()
