@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RSS Portada US</title>
+    <link>http://www.us.es/</link>
+    <description>RSS Portada de la US</description>
+    <language>es-ES</language>
+    <managingEditor>portaladm@us.es (Administrator User)</managingEditor>
+    <pubDate>Mon, 22 Oct 2018 17:03:36 +0000</pubDate>
+    <lastBuildDate>Mon, 22 Oct 2018 17:03:35 +0000</lastBuildDate>
+    <generator>eZ Components Feed dev (http://ezcomponents.org/docs/tutorials/Feed)</generator>
+    <docs>http://www.rssboard.org/rss-specification</docs>
+    <atom:link href="http://www.us.es/rss/feed/portada" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Preinscripción Grados: Fase Extraordinaria</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Preinscripcion-Grados-Fase-Extraordinaria</link>
+      <description>Listado de Titulaciones para Fase Extraordinaria.</description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <category>1</category>
+      <guid isPermaLink="false">4f24bfebc53e668b91a12d7a79255aeb</guid>
+      <pubDate>Fri, 21 Sep 2018 07:17:02 +0000</pubDate>
+    </item>
+    <item>
+      <title>Automatrícula Curso 2018-2019</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Automatricula-Curso-2018-2019</link>
+      <description>Enlace a la Automatrícula Curso 2018-2019</description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <category>1</category>
+      <guid isPermaLink="false">d627faa18b621e1918e503cf7a8244e1</guid>
+      <pubDate>Mon, 17 Sep 2018 08:35:04 +0000</pubDate>
+    </item>
+    <item>
+      <title>Actualización del servidor de nombres primario (DNS)</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Actualizacion-del-servidor-de-nombres-primario-DNS</link>
+      <description></description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <guid isPermaLink="false">a41c153dad306d03f673ad185a84e7ae</guid>
+      <pubDate>Mon, 30 Jul 2018 12:12:50 +0000</pubDate>
+    </item>
+    <item>
+      <title>Prueba de Acceso a la Universidad: Calendario vista de examen.</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Prueba-de-Acceso-a-la-Universidad-Calendario-vista-de-examen2</link>
+      <description>Calendario vista de examen. Convocatoria Extraordinaria, septiembre 2018</description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <category>1</category>
+      <guid isPermaLink="false">3b5e605355d43766199edd528aabe885</guid>
+      <pubDate>Fri, 13 Jul 2018 07:12:02 +0000</pubDate>
+    </item>
+    <item>
+      <title>Actualización del servicio de Disco Duro Virtual Corporativo de la US</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Actualizacion-del-servicio-de-Disco-Duro-Virtual-Corporativo-de-la-US</link>
+      <description></description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <guid isPermaLink="false">f27c721b06f11de3f14ed49308740f50</guid>
+      <pubDate>Thu, 12 Jul 2018 07:11:37 +0000</pubDate>
+    </item>
+    <item>
+      <title>Convocatoria de Ayudas Propias de la Universidad de Sevilla</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Convocatoria-de-Ayudas-Propias-de-la-Universidad-de-Sevilla2</link>
+      <description>Resolución Rectoral</description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <category>1</category>
+      <guid isPermaLink="false">04a7c7460a031d6b0d550c92f40a25c9</guid>
+      <pubDate>Fri, 06 Jul 2018 12:15:09 +0000</pubDate>
+    </item>
+    <item>
+      <title>Salas de Estudio 24 horas</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Salas-de-Estudio-24-horas</link>
+      <description>Horario de las Salas de Estudio 24 horas, para los meses de julio y agosto 2018.</description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <guid isPermaLink="false">5d2b733768bd4637c4d1edf0c240f584</guid>
+      <pubDate>Tue, 26 Jun 2018 09:57:08 +0000</pubDate>
+    </item>
+    <item>
+      <title>Cuentas Anuales: Estados Presupuestarios del ejercicio 2017</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Cuentas-Anuales-Estados-Presupuestarios-del-ejercicio-2017</link>
+      <description>Aprobadas por el Consejo Social con fecha 20 de junio de 2018.</description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <category>1</category>
+      <guid isPermaLink="false">166873b94f0e2cc1808da563cb667702</guid>
+      <pubDate>Mon, 25 Jun 2018 10:53:07 +0000</pubDate>
+    </item>
+    <item>
+      <title>Cursos de Adaptación Itinerarios Curriculares</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Cursos-de-Adaptacion-Itinerarios-Curriculares2</link>
+      <description>Itinerarios Curriculares Concretos (Cursos de Adaptación): Apertura la Segunda Fase.</description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <category>1</category>
+      <guid isPermaLink="false">94bfae3d3b65471c70a362c5bbc56c7b</guid>
+      <pubDate>Fri, 22 Jun 2018 12:48:23 +0000</pubDate>
+    </item>
+    <item>
+      <title>Preinscripción admisión estudios de Grado.</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Preinscripcion-admision-estudios-de-Grado</link>
+      <description>Abierto el plazo de presentación de solicitudes para acceder a los estudios de Grado.</description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <category>1</category>
+      <guid isPermaLink="false">391ac303dfaf4649a2e8d6fdf85e1403</guid>
+      <pubDate>Fri, 22 Jun 2018 08:03:58 +0000</pubDate>
+    </item>
+    <item>
+      <title>Pruebas de Acceso y Admisión y Preinscripción. </title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Pruebas-de-Acceso-y-Admision-y-Preinscripcion.</link>
+      <description>Prueba de Acceso a la Universidad: "CONSULTA CALIFICACIONES PAU TRAS LAS SEGUNDAS CORRECCIONES"</description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <category>1</category>
+      <guid isPermaLink="false">86dc753e346c2d5a40f36bb915b6805e</guid>
+      <pubDate>Mon, 11 Jun 2018 11:02:51 +0000</pubDate>
+    </item>
+    <item>
+      <title>Circular de Gerencia sobre Procedimiento a seguir en caso de accidente de trabajo</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Circular-de-Gerencia-sobre-Procedimiento-a-seguir-en-caso-de-accidente-de-trabajo</link>
+      <description></description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <guid isPermaLink="false">5dbb503052c5ad160ee7c8bae8ad5f4b</guid>
+      <pubDate>Mon, 28 May 2018 10:43:20 +0000</pubDate>
+    </item>
+    <item>
+      <title>Trabajo en la Red Académica Andaluza</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Trabajo-en-la-Red-Academica-Andaluza</link>
+      <description>El próximo miércoles 30 de Mayo el C.I.C.A. realizará la segunda fase</description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <category>1</category>
+      <guid isPermaLink="false">218856e94daacc7b50da8bfa52be3aa3</guid>
+      <pubDate>Thu, 24 May 2018 11:01:52 +0000</pubDate>
+    </item>
+    <item>
+      <title>Campaña de difusión de la Automatrícula 2018/2019. </title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Campana-de-difusion-de-la-Automatricula-2018-2019.</link>
+      <description>Automatrícula 2018/2019 Grados / Másteres Universitarios</description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <category>1</category>
+      <guid isPermaLink="false">867e6645d220ee73ec9af8b67ccc1efd</guid>
+      <pubDate>Tue, 15 May 2018 12:56:35 +0000</pubDate>
+    </item>
+    <item>
+      <title>Horarios Registro General Feria 2018</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Horarios-Registro-General-Feria-2018</link>
+      <description>Horario de Atención al Público de Registro General durante la Feria de abril 2018.</description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <category>1</category>
+      <guid isPermaLink="false">a0b50eae51ef4559e5c7004413dd3742</guid>
+      <pubDate>Wed, 11 Apr 2018 10:05:29 +0000</pubDate>
+    </item>
+    <item>
+      <title>Convocatoria de Ayudas a Proyectos de I+D+i</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Convocatoria-de-Ayudas-a-Proyectos-de-I-D-i</link>
+      <description>Marco del Programa Operativo FEDER Andalucía 2014-2020</description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <category>1</category>
+      <guid isPermaLink="false">92bbe036248e2cb10859935cf48161ef</guid>
+      <pubDate>Mon, 26 Mar 2018 11:18:57 +0000</pubDate>
+    </item>
+    <item>
+      <title>Convocatoria de Ayudas Propias de la Universidad de Sevilla</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Convocatoria-de-Ayudas-Propias-de-la-Universidad-de-Sevilla</link>
+      <description>Abierto el plazo de presentación de solicitudes de la Modalidad de Ayudas al estudio.</description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <category>1</category>
+      <guid isPermaLink="false">6d2f98a480e261b22180380ba872ba91</guid>
+      <pubDate>Fri, 23 Mar 2018 11:03:35 +0000</pubDate>
+    </item>
+    <item>
+      <title>Horarios Registro General Semana Santa 2018</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Horarios-Registro-General-Semana-Santa-2018</link>
+      <description>Horario de Atención al Público de Registro General durante la Semana Santa del presente año 2018</description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <category>1</category>
+      <guid isPermaLink="false">99a952b753d8cb289652d727c828fcf8</guid>
+      <pubDate>Thu, 22 Mar 2018 07:38:10 +0000</pubDate>
+    </item>
+    <item>
+      <title>Horarios salas de estudio Semana Santa y Feria 2018</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Horarios-salas-de-estudio-Semana-Santa-y-Feria-2018</link>
+      <description>Horario de las salas de estudio durante la Semana Santa y Feria del presente año 2018.</description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <category>1</category>
+      <guid isPermaLink="false">73d4f925865bb78a91649d0ed7c57286</guid>
+      <pubDate>Wed, 21 Mar 2018 08:39:13 +0000</pubDate>
+    </item>
+    <item>
+      <title>Preinscripción grados 2018-19.</title>
+      <link>http://www.us.es/acerca/comunicacion/tablones/generales/Preinscripcion-grados-2018-19</link>
+      <description>Fase de Preinscripción exclusivamente para extranjeros.</description>
+      <author>portaladm@us.es (Administrator User)</author>
+      <category>1</category>
+      <guid isPermaLink="false">70acb875b2791dfab233e0b1f052b4eb</guid>
+      <pubDate>Tue, 27 Feb 2018 13:42:32 +0000</pubDate>
+    </item>
+  </channel>
+</rss>
