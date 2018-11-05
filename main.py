@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from bs4 import BeautifulSoup
 from tkinter import *
 from sqlite3 import *
@@ -29,13 +31,16 @@ def store_data():
             DENOMINACION TEXT NOT NULL,
             MARCA TEXT NOT NULL,
             PRECIO_KILO DOUBLE NOT NULL,
-            PRECIO_ANTIGUO DOUBLE NOT NULL,
+            PRECIO_ANTIGUO DOUBLE,
             PRECIO_FINAL DOUBLE NOT NULL);''')
-    data = [["test1", "test1", 1.0, 1.0, 1.0], ["test2", "test2", 2.0, 2.1, 2.0]]
-    # data = retrieve_data("https://www.ulabox.com/en/campaign/productos-sin-gluten#gref")
-    for i in data:
+    arbol = retrieve_page("https://www.ulabox.com/en/campaign/productos-sin-gluten#gref")
+    denominaciones, marcas, precio_vars, precios, precio_ants = retrieve_data(arbol)
+    contador = 0
+    for i in denominaciones:
         cursor = conn.execute(
-            """INSERT INTO PRODUCTOS (DENOMINACION, MARCA, PRECIO_KILO, PRECIO_ANTIGUO, PRECIO_FINAL) VALUES (?,?,?,?,?)""", i)
+            """INSERT INTO PRODUCTOS (DENOMINACION, MARCA, PRECIO_KILO, PRECIO_ANTIGUO, PRECIO_FINAL) VALUES (?,?,?,?,?)""",
+            (denominaciones[contador], marcas[contador], precio_vars[contador], precio_ants[contador], precios[contador]))
+        contador = contador + 1
         cursor.close()
     conn.commit()
     cursor = conn.execute("SELECT COUNT(*) FROM PRODUCTOS")
@@ -55,20 +60,60 @@ def popup_count(count: int):
     b.grid(row=1, column=0)
 
 
-def retrieve_data(d: str):
-    return  # TODO: retrieve the necessary data from the URL in parameter d as an array
+def retrieve_data(arbol):
+    def modificar_precio(precio: str):
+        real_precio = precio[4:8]
+        real_precio = real_precio.strip()
+        real_precio = real_precio.replace(",", ".")
+        real_precio = float(real_precio)
+        return real_precio
+
+    # Filtramos para tener directamente la lista de PRODUCTOS
+    productos = arbol.find("div", id="product-list")
+    denominaciones = []
+    marcas = []
+    precio_vars = []
+    precios = []
+    precio_ants = []
+
+    for producto in productos.find_all("div", class_="grid__item m-one-whole t-one-third d-one-third dw-one-quarter | js-product-grid-grid"):
+        denominacion = producto.find('h3').find('a')
+        denominaciones.append(denominacion.text.strip())
+        print(denominacion.text.strip())
+
+        marca = producto.find('h4').find('a')
+        marcas.append(marca.text.strip())
+        print(marca.text.strip())
+
+        precio_var = producto.find('small', class_="product-item__ppu nano")
+        precio_var = modificar_precio(precio_var.text)
+        precio_vars.append(precio_var)
+        print(precio_var)
+
+        precio_int = producto.find('span', class_='delta')
+        precio_dec = producto.find('span', class_="milli")
+        precio = int(precio_int.text) + 0.01 * float(precio_dec.text[1:-1].strip())
+        precios.append(precio)
+
+        if len(producto.find("span", class_="product-grid-footer__price").contents) == 2:
+            precio_ant = producto.find("span", class_="product-grid-footer__price").find_all("del")[0].string
+        else:
+            precio_ant = None
+        precio_ants.append(precio_ant)
+
+    return denominaciones, marcas, precio_vars, precios, precio_ants
 
 
 def retrieve_page(d: str):
     file = request.urlopen(d)
-    doc = BeautifulSoup(file, "lxml")
+    doc = BeautifulSoup(file, "html.parser")
     return doc
 
 
 def list_data():
     def list():
-        marcas = conn.execute('''SELECT * FROM PRODUCTOS WHERE MARCA LIKE ?''', (w.get(),))
-        print_product(marcas)
+        cursor = conn.execute('''SELECT * FROM PRODUCTOS WHERE MARCA LIKE ?''', (w.get(),))
+        print_product(cursor)
 
     conn = connect('test.db')
     brands = conn.execute('''SELECT MARCA FROM PRODUCTOS''')
@@ -87,22 +132,10 @@ def list_data():
 
 
 def search_data():
-     
     conn = connect('test.db')
-    cursor = conn.execute('''SELECT  DENOMINACION, PRECIO_ANTIGUO, PRECIO_FINAL FROM PRODUCTOS WHERE PRECIO_ANTIGUO !=  PRECIO_FINAL''')
-    
-    v = Toplevel()
-    sc = Scrollbar(v)
-    sc.pack(side = RIGHT, fill=Y)
-    lb = Listbox(v, width=200, yscrollcommand=sc.set)
-    for row in cursor:
-        lb.insert(END, "Nombre: " + str(row[0]))
-        lb.insert(END, "Precio antiguo: " + str(row[1]))
-        lb.insert(END, "Precio nuevo: " + str(row[2]))  
-        lb.insert(END, '')  
-    lb.pack(side=LEFT, fill=BOTH)
-    sc.config(command = lb.yview)
-    return  # TODO: Search the database applying some filter
+    cursor = conn.execute('''SELECT * FROM PRODUCTOS WHERE PRECIO_ANTIGUO !=  NULL''')
+    print_product(cursor)
+    conn.close()
 
 
 def order_data():
@@ -121,13 +154,13 @@ def print_product(cursor):
     if cursor != None:
         for row in cursor:
             lb.insert(END, "Nombre: " + str(row[1]))
-            lb.insert(END, "Precio: " + str(row[5]))
+            lb.insert(END, "Precio antiguo: " + str(row[4]))
+            lb.insert(END, "Precio final: " + str(row[5]))
             lb.insert(END, '')
     else:
         messagebox.showinfo("Error", "No se obtuvieron resultados...")
     lb.pack(side=LEFT, fill=BOTH)
     sc.config(command=lb.yview)
-
 
 
 if __name__ == "__main__": main_window()
