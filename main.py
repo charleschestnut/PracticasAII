@@ -11,7 +11,7 @@ def main_window():
     store_view.pack(side=LEFT)
     list_view = Button(top, text="Ordenar por Precio Unitario", command=lambda: order_data())
     list_view.pack(side=LEFT)
-    list_view = Button(top, text="Mostrar Marca", command=mostrarMarca)
+    list_view = Button(top, text="Mostrar Marca", command=lambda: list_data())
     list_view.pack(side=LEFT)
     list_view = Button(top, text="Buscar Rebajas", command=lambda: search_data())
     list_view.pack(side=LEFT)
@@ -29,12 +29,13 @@ def store_data():
             DENOMINACION TEXT NOT NULL,
             MARCA TEXT NOT NULL,
             PRECIO_KILO DOUBLE NOT NULL,
+            PRECIO_ANTIGUO DOUBLE NOT NULL,
             PRECIO_FINAL DOUBLE NOT NULL);''')
-    data = [["test1", "test1", 1.0, 1.0], ["test2", "test2", 2.0, 2.0]]
+    data = [["test1", "test1", 1.0, 1.0, 1.0], ["test2", "test2", 2.0, 2.1, 2.0]]
     # data = retrieve_data("https://www.ulabox.com/en/campaign/productos-sin-gluten#gref")
     for i in data:
         cursor = conn.execute(
-            """INSERT INTO PRODUCTOS (DENOMINACION, MARCA, PRECIO_KILO, PRECIO_FINAL) VALUES (?,?,?,?)""", i)
+            """INSERT INTO PRODUCTOS (DENOMINACION, MARCA, PRECIO_KILO, PRECIO_ANTIGUO, PRECIO_FINAL) VALUES (?,?,?,?,?)""", i)
         cursor.close()
     conn.commit()
     cursor = conn.execute("SELECT COUNT(*) FROM PRODUCTOS")
@@ -65,7 +66,24 @@ def retrieve_page(d: str):
 
 
 def list_data():
-    return  # TODO: Retrieve the data from the database and show them in the interface
+    def list():
+        marcas = conn.execute('''SELECT * FROM PRODUCTOS WHERE MARCA LIKE ?''', (w.get(),))
+        print_product(marcas)
+
+    conn = connect('test.db')
+    brands = conn.execute('''SELECT MARCA FROM PRODUCTOS''')
+
+    v = Toplevel()
+    label = Label(v, text="Buscar Marca: ")
+    values = []
+    for i in brands:
+        values.append(i)
+    w = Spinbox(v, values=(values))
+
+    button = Button(v, text="¡Buscar!", command=list)
+    label.grid(row=0, column=0)
+    w.grid(row=0, column=1)
+    button.grid(row=1, column=1)
 
 
 def search_data():
@@ -76,59 +94,23 @@ def order_data():
     conn = connect('test.db')
     conn.text_factory = str
     cursor = conn.execute("""SELECT * FROM PRODUCTOS ORDER BY PRECIO_KILO ASC""")
-    print_theme(cursor)
+    print_product(cursor)
     conn.close()
 
 
-def print_theme(cursor):
+def print_product(cursor):
     v = Toplevel()
     sc = Scrollbar(v)
     sc.pack(side=RIGHT, fill=Y)
     lb = Listbox(v, width=150, yscrollcommand=sc.set)
-    for row in cursor:
-        lb.insert(END, row[0])
-        lb.insert(END, row[1])
-        lb.insert(END, row[2])
-        lb.insert(END, row[3])
-        lb.insert(END, '')
+    if cursor != None:
+        for row in cursor:
+            lb.insert(END, "Nombre: " + str(row[1]))
+            lb.insert(END, "Precio: " + str(row[5]))
+            lb.insert(END, '')
+    else:
+        messagebox.showinfo("Error", "No se obtuvieron resultados...")
     lb.pack(side=LEFT, fill=BOTH)
     sc.config(command=lb.yview)
-    
-def mostrarMarca():
-    def list():
-        marcas=conn.execute('''SELECT DENOMINACION, PRECIO_FINAL FROM PRODUCTOS WHERE MARCA LIKE ?''', (w.get(),))
-        showResult(marcas)
-        
-    conn = connect('test.db')
-    brands = conn.execute('''SELECT MARCA FROM PRODUCTOS''')
-    
-    v = Toplevel()
-    label = Label(v, text="Search for brand:  ")
-    values=[]
-    for i in brands:
-        values.append(i)
-    w = Spinbox(v, values=(values))
-
-    button = Button(v, text="Search!", command=list)
-    label.grid(row=0, column=0)
-    w.grid(row=0, column =1 )
-    button.grid(row=1, column=1)
-
-def showResult(cursor):
-    #print(cursor[1])
-    v = Toplevel()
-    sc = Scrollbar(v)
-    sc.pack(side = RIGHT, fill=Y)
-    lb = Listbox(v, width=200, yscrollcommand=sc.set)
-    if(cursor != None):
-        for row in cursor:
-            lb.insert(END, "\n")
-            lb.insert(END, row[0])
-            lb.insert(END, row[1])
-        lb.pack(side=LEFT, fill=BOTH)
-        sc.config(command = lb.yview)
-    else:
-        messagebox.showinfo("Nothing", "There is no entry")
-
 
 if __name__ == "__main__": main_window()
