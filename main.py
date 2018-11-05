@@ -87,6 +87,21 @@ def list_data():
 
 
 def search_data():
+     
+    conn = connect('test.db')
+    cursor = conn.execute('''SELECT  DENOMINACION, PRECIO_ANTIGUO, PRECIO_FINAL FROM PRODUCTOS WHERE PRECIO_ANTIGUO !=  PRECIO_FINAL''')
+    
+    v = Toplevel()
+    sc = Scrollbar(v)
+    sc.pack(side = RIGHT, fill=Y)
+    lb = Listbox(v, width=200, yscrollcommand=sc.set)
+    for row in cursor:
+        lb.insert(END, "\n")
+        lb.insert(END, row[0])
+        lb.insert(END, "Old Price is " + str(row[1]))
+        lb.insert(END, "New Price is " + str(row[2]))    
+    lb.pack(side=LEFT, fill=BOTH)
+    sc.config(command = lb.yview)
     return  # TODO: Search the database applying some filter
 
 
@@ -112,5 +127,7 @@ def print_product(cursor):
         messagebox.showinfo("Error", "No se obtuvieron resultados...")
     lb.pack(side=LEFT, fill=BOTH)
     sc.config(command=lb.yview)
+
+
 
 if __name__ == "__main__": main_window()
