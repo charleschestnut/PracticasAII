@@ -1,9 +1,9 @@
-'''
-Created on 5 nov. 2018
-
-@author: Javier Moreno
-'''
-
+from tkinter import *
+from tkinter import messagebox
+import os
+from whoosh.index import create_in, open_dir
+from whoosh.fields import Schema, TEXT, KEYWORD, DATETIME, NUMERIC
+from whoosh.qparser import QueryParser
 import urllib.request
 
 from bs4 import BeautifulSoup
@@ -16,8 +16,6 @@ def extraer_web():
     s = BeautifulSoup(f,"html.parser")
     return s
 
-
-#PASO: TITULO, FECHAINICIO, FECHAFIN, DESCRIPCIÓN, CATEGORÍA
 def extraer_datos():
 
     arbol = extraer_web()
@@ -28,31 +26,39 @@ def extraer_datos():
 
     atributos = []
     for evento in eventos:
+        array = []
         titulo = evento.find("span", class_="summary")
         titulo = titulo.text
-        atributos.append(titulo)
+        array.append(titulo)
 
         fechaInicio = evento.find("abbr", class_="dtstart")
         if fechaInicio is None:
-            atributos.append("")
+            array.append("")
         else:
-            atributos.append(fechaInicio.get('title'))
+            array.append(fechaInicio.get('title'))
 
         fechaFin = evento.find("abbr", class_="dtend")
         if fechaFin is None:
-            atributos.append("")
+            array.append("")
         else:
-            atributos.append(fechaFin.get('title'))
+            array.append(fechaFin.get('title'))
 
         description = evento.find("p", class_="description")
         if description is None:
-            atributos.append("")
+            array.append("")
         else:
-            atributos.append(description.text)
+            array.append(description.text)
 
         categoria = evento.find("li", class_="category")
         categoria = categoria.find("span")
         categoria = categoria.text
+        array.append(categoria)
+
+        atributos.append(array)
 
     print(atributos)
     return atributos
+
+
+if __name__ == '__main__':
+    extraer_datos()
