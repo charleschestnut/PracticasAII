@@ -113,9 +113,8 @@ def searchByDate():
         with ix.searcher() as searcher:
             # Change names of attribute in which you will search
             fecha = str(en.get())
-            parser = MultifieldParser(["start", "end"], ix.schema)
-            parser.add_plugin(DateParserPlugin(free=True))
-            query = parser.parse(u"start: before " + fecha + " AND end: after " + fecha)
+            parser = QueryParser("start", ix.schema)
+            query = parser.parse(u"start:[TO " + fecha + "] AND end:[" + fecha + "TO]")
             results = searcher.search(query)
             for r in results:
                 lb.insert(END, r['titulo'])
